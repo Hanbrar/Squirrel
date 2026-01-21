@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import LandingPage from './components/LandingPage'
 import JobTracker from './components/JobTracker'
 import { useTheme } from './hooks/useTheme'
@@ -17,18 +18,24 @@ export default function App() {
 
   if (currentPage === 'landing') {
     return (
-      <LandingPage
-        onStartTracking={handleStartTracking}
-        isDarkMode={isDarkMode}
-      />
+      <>
+        <LandingPage
+          onStartTracking={handleStartTracking}
+          isDarkMode={isDarkMode}
+        />
+        <Analytics />
+      </>
     )
   }
 
   return (
-    <JobTracker
-      isDarkMode={isDarkMode}
-      onToggleTheme={toggleTheme}
-      onBackToHome={handleBackToHome}
-    />
+    <>
+      <JobTracker
+        isDarkMode={isDarkMode}
+        onToggleTheme={toggleTheme}
+        onBackToHome={handleBackToHome}
+      />
+      <Analytics />
+    </>
   )
 }
